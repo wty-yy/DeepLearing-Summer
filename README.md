@@ -27,7 +27,13 @@
 
 - 《深度学习实战 - 基于 TensorFlow2 和 Keras》 ---- Gulli, Kapoor, Pal
 
-- 以及YouTube上相关教程, MIT课源代码
+- YouTube课程，推荐 [TensorFlow 2.0 Complete Course - Python Neural Networks for Beginners Tutorial](https://www.youtube.com/watch?v=tPYj3fFJGjk&t=8210s)，虽然第一部分的estimator官方已不推荐使用，但视频讲解的非常详细，本GitHub项目中 [TensorFlow](./TensorFlow/) 下有我自己做的中文笔记（非常详细），也有YouTube原版英文笔记.
+YouTube课程（6小时52分）视频下载链接：[阿里云 - 720P](https://www.aliyundrive.com/s/SMAkuJeQGub)
+[阿里云 - 1080P]()
+
+- TensorFlow官网API[参考文档](https://tensorflow.google.cn/api_docs/python/tf)，使用方法：在左侧栏，找到自己要用的函数API，点击去查看详细使用说明.
+
+- MIT课程源代码
 
 #### Pandas学习
 
