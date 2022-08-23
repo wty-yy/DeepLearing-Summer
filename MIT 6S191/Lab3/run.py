@@ -9,5 +9,6 @@
 
 from cartpole import Cartpole
 
-cartpole = Cartpole(load=False, output_model='Mini_batch3')
-cartpole.train(100)
+for i in range(0, 10):
+    cartpole = Cartpole(load=False, output_model='my_dqn' + str(i))
+    cartpole.train(80)
