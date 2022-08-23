@@ -1,21 +1,10 @@
-## Cartpole问题
-
-Cartpole问题可以视为一个[倒立摆问题](https://baike.baidu.com/item/%E5%80%92%E7%AB%8B%E6%91%86/7765096)，倒立摆是一个重心高于其[枢轴](https://baike.baidu.com/item/%E6%9E%A2%E8%BD%B4/2010044)点的摆. 它是不稳定的，但是可以通过移动枢轴点位置以保持该系统的稳定性. 我们的目标是尽可能长地保持摆的垂直状态.
-
-![Cartpole示意图](D:\yy\Documents\GitHub\DeepLearing-Summer\MIT 6S191\Lab3\note\Cartpole_example.png)
-
-- 紫色方块代表枢纽点.
-- 红色和绿色箭头分别表示枢纽点可移动的水平方向.
-
-> 一个摆通过一个无摩擦的枢轴连接到推车上，该推车沿着水平方向的无摩擦轨道移动. 通过对推车施加 $+1$ 和 $-1$ 的推力来维持该系统平衡，保持摆的直立状态. 当杆在一个时间戳保持直立，则获得 $+1$ 的奖励. 当杆与竖直方向的夹角超过 $15^\circ$，或者小车相对中心的移动距离超过 $2.4$ 个单位时，游戏结束.
-
-## 强化学习
+# 强化学习
 
 强化学习（Reinforcement Learning, RL）是一种通过不断试错，并从中不断改进从而提升效果的学习算法.
 
 一般来说，游戏或电脑中模拟的现实情况称为**环境**（Environment)，**智能体**（Agent）在环境中可以做出**行动**（Action）从而最大化累积**奖励**（Reward），在每次行动后，智能体可以通过**观察**（Observe）环境得到**状态**（State）的变化并获得当前行动的**奖励**. 这段过程可以随着时间序列反复进行，可以表示为下图的Markov链形式：
 
-![Markov chain - SARSA'](D:\yy\Documents\GitHub\DeepLearing-Summer\MIT 6S191\Lab3\note\sarsa'.png)
+![Markov chain - SARSA'](sarsa'.png)
 
 我们通过初始化环境 $s_0$ 开始，对于每一次迭代，智能体会观察当前的状态 $s_t$，通过预测算法，执行最好的行动 $a_t$. 随后环境会返回当前行动对应的奖励 $r_t$ 和一个新的状态 $s_{t+1}$，并且可以得到当前游戏是否已经结束. 上述过程可以反复执行，直到游戏结束.
 
@@ -92,7 +81,7 @@ $$
 
 其中 $\alpha\in(0,1)$，称为学习因子或步长.
 
-#### DQN
+### DQN
 
 DQN其实就是Q-Learning的变体，将值函数用神经网络去近似. 设神经网络函数为 $Q(s, a;\omega)$，其中 $\omega$ 为该网络的权值. 则损失函数为
 $$
@@ -114,7 +103,7 @@ r_t+\gamma\max_{a\in \mathbb{R}^M}Q(s_{t+1},a;\omega^-),&\quad \text{否则}.
 $$
 区别只在 $y_t$ 的计算来源发生了变化. 在2013年发表的论文中没有使用目标神经网络，而2015年发表的论文中才提出目标神经网络.
 
-#### $\varepsilon-greedy$ 策略
+### $\varepsilon-greedy$ 策略
 
 $greedy$ 策略指的就是贪心策略，其每次选取的均为值函数最大的行动，即 $a_t = \mathop{\mathrm{argmax}}\limits_{a\in \mathbb{R}^M}{Q(s_t,a;\omega)}.$. 但是这样会导致对于采样中没有出现过的 $(s, a)$，由于没有 $Q$ 值，之后可能就不会被采样到.
 
@@ -122,7 +111,35 @@ $greedy$ 策略指的就是贪心策略，其每次选取的均为值函数最�
 
 而 $\varepsilon-greedy$ 策略则是以 $\varepsilon$ 的概率从行动空间中随机返回一个行动，以 $1-\varepsilon$ 的概率选择贪心策略，这样就能更具有随机性. $\varepsilon$ 可以随时间的增长而下降，例如 $\varepsilon = \delta^t,\ \delta\in (0,1)$.
 
+## Cartpole问题
 
+Cartpole问题可以视为一个[倒立摆问题](https://baike.baidu.com/item/%E5%80%92%E7%AB%8B%E6%91%86/7765096)，倒立摆是一个重心高于其[枢轴](https://baike.baidu.com/item/%E6%9E%A2%E8%BD%B4/2010044)点的摆. 它是不稳定的，但是可以通过移动枢轴点位置以保持该系统的稳定性. 我们的目标是尽可能长地保持摆的垂直状态.
+
+![Cartpole示意图](Cartpole_example.png)
+
+- 紫色方块代表枢纽点.
+- 红色和绿色箭头分别表示枢纽点可移动的水平方向.
+
+> 一个摆通过一个无摩擦的枢轴连接到推车上，该推车沿着水平方向的无摩擦轨道移动. 通过对推车施加 $+1$ 和 $-1$ 的推力来维持该系统平衡，保持摆的直立状态. 当杆在一个时间戳保持直立，则获得 $+1$ 的奖励. 当杆与竖直方向的夹角超过 $15^\circ$，或者小车相对中心的移动距离超过 $2.4$ 个单位时，游戏结束.
+
+### 代码实现
+
+完整代码及解释：[Cartpole 完整模块](https://github.com/wty-yy/DeepLearing-Summer/tree/master/MIT%206S191/Lab3). 此部分代码使用的是模块式写法，包含以下4个模块
+
+1. `run.py` 为主程序，用于实例化模块，调用训练函数、测试训练效果.
+2. `cartpole.py` 为环境操作及过程性数据保存代码，包含环境创建、预测模型创建、与环境进行交互、获取环境状态、调用模型进行训练、保存训练结果、测试模型效果等功能.
+3. `dqn.py` 为智能体的代码，包含创建神经网络、预测下一步的行动、通过记忆回溯对参数进行训练等功能.
+4. `constant.py` 保存所有代码中使用到的常量，包含神经网络所用的超参数、最大训练步数、保存文件的目录等.
+
+可以通过查看 `training_checkpoints` 文件夹下的图片实时查看训练效果，每次重复开始 $80$ 次游戏，完成全部训练在 $30$ 分钟左右，游戏最大时长为 $500$ 帧，我们的模型平均在重复 $30$ 次游戏时就能达到游戏最大时长，训练时间在 $15$ 分钟左右. 下图是某次训练的效果曲线，`score` 表示该模型游戏时长（帧），`Q Value` 为预测模型对 $Q$ 值进行的预测结果.
+
+<img src="DQN_train_curve.png" alt="DQN_train_curve" style="zoom:36%;" />
+
+以下是两个模型训练结果的动图.
+
+![Mini_batch_perfect_cut](Mini_batch_perfect_cut.gif)
+
+![Mini_batch18_best_cut](Mini_batch18_best_cut.gif)
 
 ## 参考资料：
 
