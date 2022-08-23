@@ -42,6 +42,7 @@ class Cartpole:
         epochs = const.EPOCHS_MIN  # 游戏结束后网络的更新次数
         for episode in tqdm(range(total_episode)):
             state = self.env.reset()  # 得到初始状态
+            q_memory = []  # 记录当前更新所返回的Q值
             for step in range(const.MAX_STEP):
                 # env.render()  # 显示游戏画面
                 action = self.dqn.act(state)  # 使用epsilon-贪心算法预测下一步行动
@@ -56,11 +57,8 @@ class Cartpole:
                     if step == max(self.score):  # 存储得分最高的模型的权重
                         self.best_model.set_weights(self.dqn.model.get_weights())
                     break
-            q_memory = []  # 记录当前更新所返回的Q值
-            for _ in range(min(epochs, self.score[-1])):  # 一轮游戏结束后开始进行记忆回溯学习
-                q_memory.append(self.dqn.experience_replay())
+                q_memory.append(self.dqn.experience_replay())  # 对模型进行训练
             self.q_value.append(np.mean(q_memory))  # 保存当前更新Q值的平均值
-            epochs = min(epochs * const.EPOCHS_INCREASE, const.EPOCHS_MAX)
             # 保存模型当前权重
             self.dqn.model.save_weights(self.checkpoint_prefix)
             self.best_model.save_weights(self.best_prefix)
@@ -68,6 +66,16 @@ class Cartpole:
         self.save()
 
     def save_figure(self):  # 保存训练过程中的曲线图
+        plt.rcParams['axes.linewidth'] = 1  # 图框宽度
+        plt.rcParams['figure.dpi'] = 200  # plt.show显示分辨率
+        config = {
+            "font.family": 'serif',
+            "font.size": 16,
+            "mathtext.fontset": 'stix',
+            "font.serif": ['SimSun'],
+        }
+        plt.figure(figsize=(10, 5))
+        plt.rcParams.update(config)
         plt.subplot(1, 2, 1)
         plt.title('score')
         plt.plot(self.score)
