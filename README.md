@@ -41,7 +41,7 @@ YouTube课程视频（6小时52分）下载链接：[阿里云 - 720P](https://w
 
 ## 学习成果展示
 
-[pdf版 总结报告](Summer - DeepLearning.pdf)，三个Lab的项目在blog上文章分别为：
+[pdf版 总结报告](https://github.com/wty-yy/DeepLearing-Summer/blob/master/Summer%20-%20DeepLearning.pdf)，三个Lab的项目在blog上文章分别为：
 
 1. [基于循环神经网络RNN的简单音乐生成](https://wty-yy.github.io/posts/42812/).
 2. [基于卷积神经网络CNN和去偏变分自动编码机DB-VAE的简单人脸识别模型](https://wty-yy.github.io/posts/52484/).
