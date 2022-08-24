@@ -15,7 +15,7 @@
 
 - ##### Recognition Systems（人脸识别）
 
-- ##### Self-Driving Control（自动驾驶控制）
+- ##### ~~Self-Driving Control（自动驾驶控制）~~（最后改为平衡滑块问题）
 
   对应 GitHub 上的代码进行学习.
 
@@ -38,3 +38,23 @@ YouTube课程视频（6小时52分）下载链接：[阿里云 - 720P](https://w
 #### Pandas学习
 
 学习YouTube上[Python Pandas Tutorial](https://www.youtube.com/watch?v=ZyhVh-qRZPA&list=PL-osiE80TeTsWmV9i9c58mdDCSskIFdDS)，一共11集. 需要掌握Pandas对训练数据的处理，以适用于模型训练之中.
+
+## 学习成果展示
+
+三个Lab在blog上文章分别为：
+
+1. [基于循环神经网络RNN的简单音乐生成](https://wty-yy.github.io/posts/42812/).
+2. [基于卷积神经网络CNN和去偏变分自动编码机DB-VAE的简单人脸识别模型](https://wty-yy.github.io/posts/52484/).
+3. [强化学习 - Deep Q-Learning Network算法 解决平衡小推车问题（Cartpole）](https://wty-yy.github.io/posts/44956/).
+
+生成的[乐曲文件](https://github.com/wty-yy/DeepLearing-Summer/tree/master/MIT%206S191/Lab1/songs).
+
+VAE渐变效果图：
+
+![渐变效果图](https://s1.328888.xyz/2022/08/24/wNoKX.png)
+
+小车平衡效果图：
+
+![动图1](https://s1.328888.xyz/2022/08/23/brfro.gif)
+
+![动图2](https://s1.328888.xyz/2022/08/23/br8DF.gif)
