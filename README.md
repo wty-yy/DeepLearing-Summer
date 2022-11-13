@@ -51,10 +51,10 @@ YouTube课程视频（6小时52分）下载链接：[阿里云 - 720P](https://w
 
 VAE渐变效果图：
 
-![渐变效果图](https://s1.328888.xyz/2022/08/24/wNoKX.png)
+![渐变效果图](./README.figure/VAE.png)
 
 小车平衡效果图：
 
-![动图1](https://s1.328888.xyz/2022/08/23/brfro.gif)
+![Mini_batch_perfect_cut](./README.figure/Mini_batch_perfect_cut.gif)
 
-![动图2](https://s1.328888.xyz/2022/08/23/br8DF.gif)
+![Mini_batch18_best_cut](./README.figure/Mini_batch18_best_cut.gif)
